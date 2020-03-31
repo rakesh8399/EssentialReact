@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Complex Component</title>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <style>
+            #container {
+                padding: 50px;
+                background-color: #FFF;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script type="text/babel">
+            var destination = document.querySelector("#container");
+
+            class Square extends React.Component{
+                render(){
+                    var squareStyle = {
+                        height: 150,
+                        backgroundColor: this.props.color
+                    };
+                    return (
+                        <div style={squareStyle}></div>
+                    );
+                }
+            }
+
+            class Label extends React.Component{
+                render(){
+                    var labelStyle = {
+                        fontFamily: "sans-serif",
+                        fontWeight: "bold",
+                        padding: 13,
+                        margin: 0
+                    };
+                    return (
+                        <div style={labelStyle}>{this.props.color}</div>
+                    );
+                }
+            }
+
+            class Card extends React.Component{
+                render(){
+                    var cardStyle = {
+                            height: 200,
+                            width: 150,
+                            padding: 0,
+                            backgroundColor: "#FFF",
+                            WebkitFilter: "drop-shadow(0px 0px 5px #666)",
+                            filter: "drop-shadow(0px 0px 5px #666)",
+                            display: "inline-block",
+                            margin: "10px"
+                        };
+                    return (
+                        <div style={cardStyle}>
+                            <Square color={this.props.color} />
+                            <Label color={this.props.color} />
+                        </div>
+                    );
+                }
+            }
+
+            ReactDOM.render(
+                <div>
+                    <Card color="#333333"/>
+                    <Card color="#FF2222"/>
+                    <Card color="#11FF11"/>
+                    <Card color="#4444FF"/>
+                    <Card color="#FF4800"/>
+                </div>,
+                destination
+            )
+        </script>
+    </body>
+</html>
